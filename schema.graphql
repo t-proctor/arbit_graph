@@ -1,0 +1,40 @@
+type CaseApproved @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  approver: Bytes! # address
+  nextApprover: Bytes! # address
+}
+
+type CaseClosed @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  winner: Bytes! # address
+  judge: Bytes! # address
+}
+
+type CaseEdited @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  editor: Bytes! # address
+  newJudge: Bytes! # address
+}
+
+type CaseJudging @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  judge: Bytes! # address
+}
+
+type CaseOpened @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  party1: Bytes! # address
+  party2: Bytes! # address
+  judge: Bytes! # address
+}
+
+type CaseRejected @entity {
+  id: ID!
+  caseId: BigInt! # uint256
+  rejecter: Bytes! # address
+}

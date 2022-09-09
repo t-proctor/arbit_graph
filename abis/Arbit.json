@@ -1,0 +1,233 @@
+[
+  { "inputs": [], "name": "notDecisionMaker", "type": "error" },
+  { "inputs": [], "name": "notJudge", "type": "error" },
+  { "inputs": [], "name": "notJudgeOrParty", "type": "error" },
+  { "inputs": [], "name": "notParty", "type": "error" },
+  { "inputs": [], "name": "notValidWinner", "type": "error" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "approver",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nextApprover",
+        "type": "address"
+      }
+    ],
+    "name": "CaseApproved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "winner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "judge",
+        "type": "address"
+      }
+    ],
+    "name": "CaseClosed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "editor",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newJudge",
+        "type": "address"
+      }
+    ],
+    "name": "CaseEdited",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "judge",
+        "type": "address"
+      }
+    ],
+    "name": "CaseJudging",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "party1",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "party2",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "judge",
+        "type": "address"
+      }
+    ],
+    "name": "CaseOpened",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "caseId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "rejecter",
+        "type": "address"
+      }
+    ],
+    "name": "CaseRejected",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" }
+    ],
+    "name": "approveCase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" },
+      { "internalType": "address", "name": "caseWinner", "type": "address" }
+    ],
+    "name": "closeCase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" },
+      { "internalType": "address", "name": "newJudge", "type": "address" }
+    ],
+    "name": "editCase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" }
+    ],
+    "name": "getCaseInfo",
+    "outputs": [
+      { "internalType": "address", "name": "party1", "type": "address" },
+      { "internalType": "address", "name": "party2", "type": "address" },
+      { "internalType": "address", "name": "judge", "type": "address" },
+      { "internalType": "address", "name": "winner", "type": "address" },
+      { "internalType": "enum Arbit.Status", "name": "", "type": "uint8" },
+      {
+        "internalType": "enum Arbit.DecisionMaker",
+        "name": "",
+        "type": "uint8"
+      },
+      { "internalType": "bool", "name": "approvedByParty1", "type": "bool" },
+      { "internalType": "bool", "name": "approvedByParty2", "type": "bool" },
+      { "internalType": "bool", "name": "approvedByJudge", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" }
+    ],
+    "name": "judgeCase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "party2", "type": "address" },
+      { "internalType": "address", "name": "judge", "type": "address" }
+    ],
+    "name": "openCase",
+    "outputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "caseId", "type": "uint256" }
+    ],
+    "name": "rejectCase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

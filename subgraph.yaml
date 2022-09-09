@@ -1,0 +1,38 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Arbit
+    network: goerli
+    source:
+      address: "0x4C0aA0aA65B6d449fF47203063D93521Bb511F22"
+      abi: Arbit
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - CaseApproved
+        - CaseClosed
+        - CaseEdited
+        - CaseJudging
+        - CaseOpened
+        - CaseRejected
+      abis:
+        - name: Arbit
+          file: ./abis/Arbit.json
+      eventHandlers:
+        - event: CaseApproved(indexed uint256,indexed address,indexed address)
+          handler: handleCaseApproved
+        - event: CaseClosed(indexed uint256,indexed address,indexed address)
+          handler: handleCaseClosed
+        - event: CaseEdited(indexed uint256,indexed address,indexed address)
+          handler: handleCaseEdited
+        - event: CaseJudging(indexed uint256,indexed address)
+          handler: handleCaseJudging
+        - event: CaseOpened(indexed uint256,address,indexed address,indexed address)
+          handler: handleCaseOpened
+        - event: CaseRejected(indexed uint256,indexed address)
+          handler: handleCaseRejected
+      file: ./src/arbit.ts
