@@ -18,7 +18,11 @@ export function handleCaseOpened(event: CaseOpened): void {
   caseEx.judge = event.params.judge;
   caseEx.status = "opened";
   caseEx.decisionMaker = event.params.party1;
-  caseEx.winner = new Address(0)
+  caseEx.winner = new Address(0);
+  caseEx.description = event.params.description;
+  caseEx.tags = event.params.tags;
+  caseEx.name = event.params.caseName;
+  caseEx.caseRuling = "";
   caseEx.save();
 }
 
@@ -42,6 +46,7 @@ export function handleCaseClosed(event: CaseClosed): void {
   }
   caseEx.status = "closed";
   caseEx.winner = event.params.winner;
+  caseEx.caseRuling = event.params.caseRuling;
   caseEx.save();
 }
 
@@ -58,6 +63,9 @@ export function handleCaseEdited(event: CaseEdited): void {
   else {
     caseEx.decisionMaker = caseEx.party1;
   }
+  caseEx.description = event.params.description;
+  caseEx.tags = event.params.tags;
+  caseEx.name = event.params.caseName;
   caseEx.save();
 }
 

@@ -1,5 +1,6 @@
 type Case @entity {
-  id: ID!
+  id: ID! # @id
+  name: String! # string
   party1: Bytes! # address
   party2: Bytes! # address
   judge: Bytes! # address

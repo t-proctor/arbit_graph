@@ -6,9 +6,9 @@ dataSources:
     name: Arbit
     network: rinkeby
     source:
-      address: "0x6Cd6ABbfae8266C49E3e701Eaa8A8C7E1a08c1CB"
+      address: "0xDb50720d920623a5BcE4fFB65a06185DBf4d4c83"
       abi: Arbit
-      startBlock: 11390902
+      startBlock: 11391975
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -28,11 +28,11 @@ dataSources:
           handler: handleCaseApproved
         - event: CaseClosed(indexed uint256,indexed address,indexed string)
           handler: handleCaseClosed
-        - event: CaseEdited(indexed uint256,indexed address,indexed address,string,string[])
+        - event: CaseEdited(indexed uint256,string,indexed address,indexed address,string,string[])
           handler: handleCaseEdited
         - event: CaseJudging(indexed uint256,indexed address)
           handler: handleCaseJudging
-        - event: CaseOpened(indexed uint256,address,indexed address,indexed address,string,string[])
+        - event: CaseOpened(indexed uint256,string,address,indexed address,indexed address,string,string[])
           handler: handleCaseOpened
         - event: CaseRejected(indexed uint256,indexed address)
           handler: handleCaseRejected

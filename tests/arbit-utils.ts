@@ -58,6 +58,7 @@ export function createCaseClosedEvent(
 
 export function createCaseEditedEvent(
   caseId: BigInt,
+  caseName: string,
   editor: Address,
   newJudge: Address,
   description: string,
@@ -69,6 +70,9 @@ export function createCaseEditedEvent(
 
   caseEditedEvent.parameters.push(
     new ethereum.EventParam("caseId", ethereum.Value.fromUnsignedBigInt(caseId))
+  )
+  caseEditedEvent.parameters.push(
+    new ethereum.EventParam("caseName", ethereum.Value.fromString(caseName))
   )
   caseEditedEvent.parameters.push(
     new ethereum.EventParam("editor", ethereum.Value.fromAddress(editor))
@@ -109,6 +113,7 @@ export function createCaseJudgingEvent(
 
 export function createCaseOpenedEvent(
   caseId: BigInt,
+  caseName: string,
   party1: Address,
   party2: Address,
   judge: Address,
@@ -121,6 +126,9 @@ export function createCaseOpenedEvent(
 
   caseOpenedEvent.parameters.push(
     new ethereum.EventParam("caseId", ethereum.Value.fromUnsignedBigInt(caseId))
+  )
+  caseOpenedEvent.parameters.push(
+    new ethereum.EventParam("caseName", ethereum.Value.fromString(caseName))
   )
   caseOpenedEvent.parameters.push(
     new ethereum.EventParam("party1", ethereum.Value.fromAddress(party1))

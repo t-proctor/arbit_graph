@@ -79,20 +79,24 @@ export class CaseEdited__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get editor(): Address {
-    return this._event.parameters[1].value.toAddress();
+  get caseName(): string {
+    return this._event.parameters[1].value.toString();
   }
 
-  get newJudge(): Address {
+  get editor(): Address {
     return this._event.parameters[2].value.toAddress();
   }
 
+  get newJudge(): Address {
+    return this._event.parameters[3].value.toAddress();
+  }
+
   get description(): string {
-    return this._event.parameters[3].value.toString();
+    return this._event.parameters[4].value.toString();
   }
 
   get tags(): Array<string> {
-    return this._event.parameters[4].value.toStringArray();
+    return this._event.parameters[5].value.toStringArray();
   }
 }
 
@@ -135,24 +139,28 @@ export class CaseOpened__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get party1(): Address {
-    return this._event.parameters[1].value.toAddress();
+  get caseName(): string {
+    return this._event.parameters[1].value.toString();
   }
 
-  get party2(): Address {
+  get party1(): Address {
     return this._event.parameters[2].value.toAddress();
   }
 
-  get judge(): Address {
+  get party2(): Address {
     return this._event.parameters[3].value.toAddress();
   }
 
+  get judge(): Address {
+    return this._event.parameters[4].value.toAddress();
+  }
+
   get description(): string {
-    return this._event.parameters[4].value.toString();
+    return this._event.parameters[5].value.toString();
   }
 
   get tags(): Array<string> {
-    return this._event.parameters[5].value.toStringArray();
+    return this._event.parameters[6].value.toStringArray();
   }
 }
 
@@ -179,30 +187,30 @@ export class CaseRejected__Params {
 }
 
 export class Arbit__getCaseInfoResult {
-  value0: Address;
+  value0: string;
   value1: Address;
   value2: Address;
-  value3: string;
-  value4: Array<string>;
-  value5: string;
-  value6: Address;
-  value7: i32;
+  value3: Address;
+  value4: string;
+  value5: Array<string>;
+  value6: string;
+  value7: Address;
   value8: i32;
-  value9: boolean;
+  value9: i32;
   value10: boolean;
   value11: boolean;
 
   constructor(
-    value0: Address,
+    value0: string,
     value1: Address,
     value2: Address,
-    value3: string,
-    value4: Array<string>,
-    value5: string,
-    value6: Address,
-    value7: i32,
+    value3: Address,
+    value4: string,
+    value5: Array<string>,
+    value6: string,
+    value7: Address,
     value8: i32,
-    value9: boolean,
+    value9: i32,
     value10: boolean,
     value11: boolean
   ) {
@@ -222,56 +230,56 @@ export class Arbit__getCaseInfoResult {
 
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromAddress(this.value0));
+    map.set("value0", ethereum.Value.fromString(this.value0));
     map.set("value1", ethereum.Value.fromAddress(this.value1));
     map.set("value2", ethereum.Value.fromAddress(this.value2));
-    map.set("value3", ethereum.Value.fromString(this.value3));
-    map.set("value4", ethereum.Value.fromStringArray(this.value4));
-    map.set("value5", ethereum.Value.fromString(this.value5));
-    map.set("value6", ethereum.Value.fromAddress(this.value6));
-    map.set(
-      "value7",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value7))
-    );
+    map.set("value3", ethereum.Value.fromAddress(this.value3));
+    map.set("value4", ethereum.Value.fromString(this.value4));
+    map.set("value5", ethereum.Value.fromStringArray(this.value5));
+    map.set("value6", ethereum.Value.fromString(this.value6));
+    map.set("value7", ethereum.Value.fromAddress(this.value7));
     map.set(
       "value8",
       ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value8))
     );
-    map.set("value9", ethereum.Value.fromBoolean(this.value9));
+    map.set(
+      "value9",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value9))
+    );
     map.set("value10", ethereum.Value.fromBoolean(this.value10));
     map.set("value11", ethereum.Value.fromBoolean(this.value11));
     return map;
   }
 
-  getParty1(): Address {
+  getCaseName(): string {
     return this.value0;
   }
 
-  getParty2(): Address {
+  getParty1(): Address {
     return this.value1;
   }
 
-  getJudge(): Address {
+  getParty2(): Address {
     return this.value2;
   }
 
-  getCaseDescription(): string {
+  getJudge(): Address {
     return this.value3;
   }
 
-  getTags(): Array<string> {
+  getCaseDescription(): string {
     return this.value4;
   }
 
-  getCaseRuling(): string {
+  getTags(): Array<string> {
     return this.value5;
   }
 
-  getWinner(): Address {
+  getCaseRuling(): string {
     return this.value6;
   }
 
-  getValue7(): i32 {
+  getWinner(): Address {
     return this.value7;
   }
 
@@ -279,15 +287,15 @@ export class Arbit__getCaseInfoResult {
     return this.value8;
   }
 
-  getApprovedByParty1(): boolean {
+  getValue9(): i32 {
     return this.value9;
   }
 
-  getApprovedByParty2(): boolean {
+  getApprovedByParty1(): boolean {
     return this.value10;
   }
 
-  getApprovedByJudge(): boolean {
+  getApprovedByParty2(): boolean {
     return this.value11;
   }
 }
@@ -300,21 +308,21 @@ export class Arbit extends ethereum.SmartContract {
   getCaseInfo(caseId: BigInt): Arbit__getCaseInfoResult {
     let result = super.call(
       "getCaseInfo",
-      "getCaseInfo(uint256):(address,address,address,string,string[],string,address,uint8,uint8,bool,bool,bool)",
+      "getCaseInfo(uint256):(string,address,address,address,string,string[],string,address,uint8,uint8,bool,bool)",
       [ethereum.Value.fromUnsignedBigInt(caseId)]
     );
 
     return new Arbit__getCaseInfoResult(
-      result[0].toAddress(),
+      result[0].toString(),
       result[1].toAddress(),
       result[2].toAddress(),
-      result[3].toString(),
-      result[4].toStringArray(),
-      result[5].toString(),
-      result[6].toAddress(),
-      result[7].toI32(),
+      result[3].toAddress(),
+      result[4].toString(),
+      result[5].toStringArray(),
+      result[6].toString(),
+      result[7].toAddress(),
       result[8].toI32(),
-      result[9].toBoolean(),
+      result[9].toI32(),
       result[10].toBoolean(),
       result[11].toBoolean()
     );
@@ -325,7 +333,7 @@ export class Arbit extends ethereum.SmartContract {
   ): ethereum.CallResult<Arbit__getCaseInfoResult> {
     let result = super.tryCall(
       "getCaseInfo",
-      "getCaseInfo(uint256):(address,address,address,string,string[],string,address,uint8,uint8,bool,bool,bool)",
+      "getCaseInfo(uint256):(string,address,address,address,string,string[],string,address,uint8,uint8,bool,bool)",
       [ethereum.Value.fromUnsignedBigInt(caseId)]
     );
     if (result.reverted) {
@@ -334,16 +342,16 @@ export class Arbit extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       new Arbit__getCaseInfoResult(
-        value[0].toAddress(),
+        value[0].toString(),
         value[1].toAddress(),
         value[2].toAddress(),
-        value[3].toString(),
-        value[4].toStringArray(),
-        value[5].toString(),
-        value[6].toAddress(),
-        value[7].toI32(),
+        value[3].toAddress(),
+        value[4].toString(),
+        value[5].toStringArray(),
+        value[6].toString(),
+        value[7].toAddress(),
         value[8].toI32(),
-        value[9].toBoolean(),
+        value[9].toI32(),
         value[10].toBoolean(),
         value[11].toBoolean()
       )
@@ -354,16 +362,18 @@ export class Arbit extends ethereum.SmartContract {
     party2: Address,
     judge: Address,
     description: string,
-    tags: Array<string>
+    tags: Array<string>,
+    caseName: string
   ): BigInt {
     let result = super.call(
       "openCase",
-      "openCase(address,address,string,string[]):(uint256)",
+      "openCase(address,address,string,string[],string):(uint256)",
       [
         ethereum.Value.fromAddress(party2),
         ethereum.Value.fromAddress(judge),
         ethereum.Value.fromString(description),
-        ethereum.Value.fromStringArray(tags)
+        ethereum.Value.fromStringArray(tags),
+        ethereum.Value.fromString(caseName)
       ]
     );
 
@@ -374,16 +384,18 @@ export class Arbit extends ethereum.SmartContract {
     party2: Address,
     judge: Address,
     description: string,
-    tags: Array<string>
+    tags: Array<string>,
+    caseName: string
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "openCase",
-      "openCase(address,address,string,string[]):(uint256)",
+      "openCase(address,address,string,string[],string):(uint256)",
       [
         ethereum.Value.fromAddress(party2),
         ethereum.Value.fromAddress(judge),
         ethereum.Value.fromString(description),
-        ethereum.Value.fromStringArray(tags)
+        ethereum.Value.fromStringArray(tags),
+        ethereum.Value.fromString(caseName)
       ]
     );
     if (result.reverted) {
@@ -494,6 +506,10 @@ export class EditCaseCall__Inputs {
   get tags(): Array<string> {
     return this._call.inputValues[3].value.toStringArray();
   }
+
+  get caseName(): string {
+    return this._call.inputValues[4].value.toString();
+  }
 }
 
 export class EditCaseCall__Outputs {
@@ -565,6 +581,10 @@ export class OpenCaseCall__Inputs {
 
   get tags(): Array<string> {
     return this._call.inputValues[3].value.toStringArray();
+  }
+
+  get caseName(): string {
+    return this._call.inputValues[4].value.toString();
   }
 }
 
