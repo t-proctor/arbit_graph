@@ -1,7 +1,7 @@
 {
-  "goerli": {
+  "rinkeby": {
     "Arbit": {
-      "address": "0x4C0aA0aA65B6d449fF47203063D93521Bb511F22"
+      "address": "0x6Cd6ABbfae8266C49E3e701Eaa8A8C7E1a08c1CB"
     }
   }
 }
