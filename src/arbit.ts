@@ -46,7 +46,7 @@ export function handleCaseClosed(event: CaseClosed): void {
   }
   caseEx.status = "closed";
   caseEx.winner = event.params.winner;
-  caseEx.caseRuling = event.params.caseRuling;
+  caseEx.caseRuling = event.params.caseRuling.toString();
   caseEx.save();
 }
 
