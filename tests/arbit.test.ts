@@ -7,8 +7,8 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { BigInt, Address } from "@graphprotocol/graph-ts"
-import { CaseApproved } from "../generated/schema"
-import { CaseApproved as CaseApprovedEvent } from "../generated/Arbit/Arbit"
+import { ExampleEntity } from "../generated/schema"
+import { CaseApproved } from "../generated/Arbit/Arbit"
 import { handleCaseApproved } from "../src/arbit"
 import { createCaseApprovedEvent } from "./arbit-utils"
 
@@ -39,25 +39,25 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("CaseApproved created and stored", () => {
-    assert.entityCount("CaseApproved", 1)
+  test("ExampleEntity created and stored", () => {
+    assert.entityCount("ExampleEntity", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "CaseApproved",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "ExampleEntity",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
       "caseId",
       "234"
     )
     assert.fieldEquals(
-      "CaseApproved",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "ExampleEntity",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
       "approver",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "CaseApproved",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "ExampleEntity",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
       "nextApprover",
       "0x0000000000000000000000000000000000000001"
     )

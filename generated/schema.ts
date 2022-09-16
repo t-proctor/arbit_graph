@@ -11,7 +11,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class CaseApproved extends Entity {
+export class Case extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,18 +19,18 @@ export class CaseApproved extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save CaseApproved entity without an ID");
+    assert(id != null, "Cannot save Case entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type CaseApproved must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type Case must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("CaseApproved", id.toString(), this);
+      store.set("Case", id.toString(), this);
     }
   }
 
-  static load(id: string): CaseApproved | null {
-    return changetype<CaseApproved | null>(store.get("CaseApproved", id));
+  static load(id: string): Case | null {
+    return changetype<Case | null>(store.get("Case", id));
   }
 
   get id(): string {
@@ -40,242 +40,6 @@ export class CaseApproved extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
-  }
-
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
-  }
-
-  get approver(): Bytes {
-    let value = this.get("approver");
-    return value!.toBytes();
-  }
-
-  set approver(value: Bytes) {
-    this.set("approver", Value.fromBytes(value));
-  }
-
-  get nextApprover(): Bytes {
-    let value = this.get("nextApprover");
-    return value!.toBytes();
-  }
-
-  set nextApprover(value: Bytes) {
-    this.set("nextApprover", Value.fromBytes(value));
-  }
-}
-
-export class CaseClosed extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save CaseClosed entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type CaseClosed must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("CaseClosed", id.toString(), this);
-    }
-  }
-
-  static load(id: string): CaseClosed | null {
-    return changetype<CaseClosed | null>(store.get("CaseClosed", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value!.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
-  }
-
-  get winner(): Bytes {
-    let value = this.get("winner");
-    return value!.toBytes();
-  }
-
-  set winner(value: Bytes) {
-    this.set("winner", Value.fromBytes(value));
-  }
-
-  get judge(): Bytes {
-    let value = this.get("judge");
-    return value!.toBytes();
-  }
-
-  set judge(value: Bytes) {
-    this.set("judge", Value.fromBytes(value));
-  }
-}
-
-export class CaseEdited extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save CaseEdited entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type CaseEdited must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("CaseEdited", id.toString(), this);
-    }
-  }
-
-  static load(id: string): CaseEdited | null {
-    return changetype<CaseEdited | null>(store.get("CaseEdited", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value!.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
-  }
-
-  get editor(): Bytes {
-    let value = this.get("editor");
-    return value!.toBytes();
-  }
-
-  set editor(value: Bytes) {
-    this.set("editor", Value.fromBytes(value));
-  }
-
-  get newJudge(): Bytes {
-    let value = this.get("newJudge");
-    return value!.toBytes();
-  }
-
-  set newJudge(value: Bytes) {
-    this.set("newJudge", Value.fromBytes(value));
-  }
-}
-
-export class CaseJudging extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save CaseJudging entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type CaseJudging must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("CaseJudging", id.toString(), this);
-    }
-  }
-
-  static load(id: string): CaseJudging | null {
-    return changetype<CaseJudging | null>(store.get("CaseJudging", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value!.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
-  }
-
-  get judge(): Bytes {
-    let value = this.get("judge");
-    return value!.toBytes();
-  }
-
-  set judge(value: Bytes) {
-    this.set("judge", Value.fromBytes(value));
-  }
-}
-
-export class CaseOpened extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save CaseOpened entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type CaseOpened must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("CaseOpened", id.toString(), this);
-    }
-  }
-
-  static load(id: string): CaseOpened | null {
-    return changetype<CaseOpened | null>(store.get("CaseOpened", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value!.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
   }
 
   get party1(): Bytes {
@@ -304,54 +68,58 @@ export class CaseOpened extends Entity {
   set judge(value: Bytes) {
     this.set("judge", Value.fromBytes(value));
   }
-}
 
-export class CaseRejected extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save CaseRejected entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type CaseRejected must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("CaseRejected", id.toString(), this);
-    }
-  }
-
-  static load(id: string): CaseRejected | null {
-    return changetype<CaseRejected | null>(store.get("CaseRejected", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
+  get status(): string {
+    let value = this.get("status");
     return value!.toString();
   }
 
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
+  set status(value: string) {
+    this.set("status", Value.fromString(value));
   }
 
-  get caseId(): BigInt {
-    let value = this.get("caseId");
-    return value!.toBigInt();
-  }
-
-  set caseId(value: BigInt) {
-    this.set("caseId", Value.fromBigInt(value));
-  }
-
-  get rejecter(): Bytes {
-    let value = this.get("rejecter");
+  get decisionMaker(): Bytes {
+    let value = this.get("decisionMaker");
     return value!.toBytes();
   }
 
-  set rejecter(value: Bytes) {
-    this.set("rejecter", Value.fromBytes(value));
+  set decisionMaker(value: Bytes) {
+    this.set("decisionMaker", Value.fromBytes(value));
+  }
+
+  get winner(): Bytes {
+    let value = this.get("winner");
+    return value!.toBytes();
+  }
+
+  set winner(value: Bytes) {
+    this.set("winner", Value.fromBytes(value));
+  }
+
+  get description(): string {
+    let value = this.get("description");
+    return value!.toString();
+  }
+
+  set description(value: string) {
+    this.set("description", Value.fromString(value));
+  }
+
+  get tags(): Array<string> {
+    let value = this.get("tags");
+    return value!.toStringArray();
+  }
+
+  set tags(value: Array<string>) {
+    this.set("tags", Value.fromStringArray(value));
+  }
+
+  get caseRuling(): string {
+    let value = this.get("caseRuling");
+    return value!.toString();
+  }
+
+  set caseRuling(value: string) {
+    this.set("caseRuling", Value.fromString(value));
   }
 }

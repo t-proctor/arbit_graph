@@ -46,9 +46,9 @@
       },
       {
         "indexed": true,
-        "internalType": "address",
-        "name": "judge",
-        "type": "address"
+        "internalType": "string",
+        "name": "caseRuling",
+        "type": "string"
       }
     ],
     "name": "CaseClosed",
@@ -74,6 +74,18 @@
         "internalType": "address",
         "name": "newJudge",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string[]",
+        "name": "tags",
+        "type": "string[]"
       }
     ],
     "name": "CaseEdited",
@@ -124,6 +136,18 @@
         "internalType": "address",
         "name": "judge",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string[]",
+        "name": "tags",
+        "type": "string[]"
       }
     ],
     "name": "CaseOpened",
@@ -160,7 +184,8 @@
   {
     "inputs": [
       { "internalType": "uint256", "name": "caseId", "type": "uint256" },
-      { "internalType": "address", "name": "caseWinner", "type": "address" }
+      { "internalType": "address", "name": "caseWinner", "type": "address" },
+      { "internalType": "string", "name": "caseRuling", "type": "string" }
     ],
     "name": "closeCase",
     "outputs": [],
@@ -170,7 +195,9 @@
   {
     "inputs": [
       { "internalType": "uint256", "name": "caseId", "type": "uint256" },
-      { "internalType": "address", "name": "newJudge", "type": "address" }
+      { "internalType": "address", "name": "newJudge", "type": "address" },
+      { "internalType": "string", "name": "description", "type": "string" },
+      { "internalType": "string[]", "name": "tags", "type": "string[]" }
     ],
     "name": "editCase",
     "outputs": [],
@@ -186,6 +213,9 @@
       { "internalType": "address", "name": "party1", "type": "address" },
       { "internalType": "address", "name": "party2", "type": "address" },
       { "internalType": "address", "name": "judge", "type": "address" },
+      { "internalType": "string", "name": "caseDescription", "type": "string" },
+      { "internalType": "string[]", "name": "tags", "type": "string[]" },
+      { "internalType": "string", "name": "caseRuling", "type": "string" },
       { "internalType": "address", "name": "winner", "type": "address" },
       { "internalType": "enum Arbit.Status", "name": "", "type": "uint8" },
       {
@@ -212,7 +242,9 @@
   {
     "inputs": [
       { "internalType": "address", "name": "party2", "type": "address" },
-      { "internalType": "address", "name": "judge", "type": "address" }
+      { "internalType": "address", "name": "judge", "type": "address" },
+      { "internalType": "string", "name": "description", "type": "string" },
+      { "internalType": "string[]", "name": "tags", "type": "string[]" }
     ],
     "name": "openCase",
     "outputs": [

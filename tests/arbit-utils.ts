@@ -37,7 +37,7 @@ export function createCaseApprovedEvent(
 export function createCaseClosedEvent(
   caseId: BigInt,
   winner: Address,
-  judge: Address
+  caseRuling: string
 ): CaseClosed {
   let caseClosedEvent = changetype<CaseClosed>(newMockEvent())
 
@@ -50,7 +50,7 @@ export function createCaseClosedEvent(
     new ethereum.EventParam("winner", ethereum.Value.fromAddress(winner))
   )
   caseClosedEvent.parameters.push(
-    new ethereum.EventParam("judge", ethereum.Value.fromAddress(judge))
+    new ethereum.EventParam("caseRuling", ethereum.Value.fromString(caseRuling))
   )
 
   return caseClosedEvent
@@ -59,7 +59,9 @@ export function createCaseClosedEvent(
 export function createCaseEditedEvent(
   caseId: BigInt,
   editor: Address,
-  newJudge: Address
+  newJudge: Address,
+  description: string,
+  tags: Array<string>
 ): CaseEdited {
   let caseEditedEvent = changetype<CaseEdited>(newMockEvent())
 
@@ -73,6 +75,15 @@ export function createCaseEditedEvent(
   )
   caseEditedEvent.parameters.push(
     new ethereum.EventParam("newJudge", ethereum.Value.fromAddress(newJudge))
+  )
+  caseEditedEvent.parameters.push(
+    new ethereum.EventParam(
+      "description",
+      ethereum.Value.fromString(description)
+    )
+  )
+  caseEditedEvent.parameters.push(
+    new ethereum.EventParam("tags", ethereum.Value.fromStringArray(tags))
   )
 
   return caseEditedEvent
@@ -100,7 +111,9 @@ export function createCaseOpenedEvent(
   caseId: BigInt,
   party1: Address,
   party2: Address,
-  judge: Address
+  judge: Address,
+  description: string,
+  tags: Array<string>
 ): CaseOpened {
   let caseOpenedEvent = changetype<CaseOpened>(newMockEvent())
 
@@ -117,6 +130,15 @@ export function createCaseOpenedEvent(
   )
   caseOpenedEvent.parameters.push(
     new ethereum.EventParam("judge", ethereum.Value.fromAddress(judge))
+  )
+  caseOpenedEvent.parameters.push(
+    new ethereum.EventParam(
+      "description",
+      ethereum.Value.fromString(description)
+    )
+  )
+  caseOpenedEvent.parameters.push(
+    new ethereum.EventParam("tags", ethereum.Value.fromStringArray(tags))
   )
 
   return caseOpenedEvent
