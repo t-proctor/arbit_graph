@@ -17,7 +17,7 @@ export function handleCaseOpened(event: CaseOpened): void {
   caseEx.party2 = event.params.party2;
   caseEx.judge = event.params.judge;
   caseEx.status = "opened";
-  caseEx.decisionMaker = event.params.party1;
+  caseEx.decisionMaker = event.params.party2;
   caseEx.winner = new Address(0);
   caseEx.description = event.params.description;
   caseEx.tags = event.params.tags;
